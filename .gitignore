@@ -1,0 +1,27 @@
+# virtual environment
+env/
+
+# passwords
+*.env
+
+
+# IDEs
+.vscode/
+.idea/
+
+
+
+# cache
+__pycache__/
+*.py[cod]
+*.log
+
+# staticfiles and compilation
+staticfiles/
+media/
+
+
+
+# operative sys
+.DS_Store
+Thumbs.db
