@@ -1,0 +1,396 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Admin{% endblock %}</title>
+
+    <!-- SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- CSS files -->
+    <link rel="stylesheet" type="text/css" href="{% static 'userPanel/css/labels.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'publicPanel/css/colorPalette.css' %}">
+    {% block css %}
+        <link rel="stylesheet" type="text/css" href="{% static 'userPanel/css/userIndex.css' %}">
+    {% endblock %}
+
+    <!-- Fonts -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Expletus+Sans:wght@400;500;600;700&family=Inter:wght@100;200;300;400;500;600;700;800&display=swap');
+    </style>
+    <!-- Íconos-->
+    <script src="https://kit.fontawesome.com/c986eafe9b.js" crossorigin="anonymous"></script>
+    
+</head>
+<body>
+    <header>
+        <div class="top-menu">
+            <div class="top-section">
+                <div class="top-logo">
+                    <img src="" alt="">
+                </div>
+                <div class="name-div">
+                    <h3>Alberto Hernandez de dededfrffr</h3>
+                </div>
+            </div>
+            <div class="top-section">
+                <a href="" class="log-out">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    {% block content %}
+
+    <section class="content">
+        <ul class="business-list">
+            <li class="business-info">
+                <div class="top-business-info">
+                    <h5>Beef and drinks John</h5>
+                    <span>since 21/12/24</span>
+                </div>
+                <ul class="business-rewards">
+                    <li>
+                        <div class="points-counter">
+                            <span class="points-owner">
+                                280
+                            </span>
+                            <span class="points-requiered">
+                                of
+                            </span>
+                            <span class="points-requiered">
+                                500
+                            </span>
+                        </div>
+                        <hr>
+                        <h6>330ml beer</h6>
+                        <p>Canjealo por 1 cerveza nacional o importada de 330ml (consulta marcas participantes)</p>
+                        <button>Get</button>
+                    </li>
+                    <li>
+                        <div class="points-counter">
+                            <span class="points-owner">
+                                280
+                            </span>
+                            <span class="points-requiered">
+                                of
+                            </span>
+                            <span class="points-requiered">
+                                500
+                            </span>
+                        </div>
+                        <hr>
+                        <h6>330ml beer</h6>
+                        <p>Canjealo por 1 cerveza nacional o importada de 330ml (consulta marcas participantes)</p>
+                        <button>Get</button>
+                    </li>
+                    <li>
+                        <div class="points-counter">
+                            <span class="points-owner">
+                                280
+                            </span>
+                            <span class="points-requiered">
+                                of
+                            </span>
+                            <span class="points-requiered">
+                                500
+                            </span>
+                        </div>
+                        <hr>
+                        <h6>330ml beer</h6>
+                        <p>Canjealo por 1 cerveza nacional o importada de 330ml (consulta marcas participantes)</p>
+                        <button>Get</button>
+                    </li>
+                </ul>
+                <ul class="business-transactions">
+                    <span>Transactions</span>
+                    <li>
+                        <h6 class="added">Points Added</h6>
+                        <div class="points-info">
+                            <span>50 points</span>
+                            <span>06/11/24</span>
+                        </div>
+                    </li>
+                    <li>
+                        <h6 class="spent">Points spent</h6>
+                        <div class="points-info">
+                            <span>350 points</span>
+                            <span>06/11/24</span>
+                        </div>
+                    </li>
+                    <li>
+                        <h6 class="spent">Points spent</h6>
+                        <div class="points-info">
+                            <span>350 points</span>
+                            <span>06/11/24</span>
+                        </div>
+                    </li>
+                    <li>
+                        <h6 class="spent">Points spent</h6>
+                        <div class="points-info">
+                            <span>350 points</span>
+                            <span>06/11/24</span>
+                        </div>
+                    </li>
+                    <li>
+                        <h6 class="added">Points Added</h6>
+                        <div class="points-info">
+                            <span>50 points</span>
+                            <span>06/11/24</span>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+            <li class="business-info">
+                <div class="top-business-info">
+                    <h5>Beef and drinks John</h5>
+                    <span>since 21/12/24</span>
+                </div>
+                <ul class="business-rewards">
+                    <li>
+                        <div class="points-counter">
+                            <span class="points-owner">
+                                280
+                            </span>
+                            <span class="points-requiered">
+                                of
+                            </span>
+                            <span class="points-requiered">
+                                500
+                            </span>
+                        </div>
+                        <hr>
+                        <h6>330ml beer</h6>
+                        <p>Canjealo por 1 cerveza nacional o importada de 330ml (consulta marcas participantes)</p>
+                        <button>Get</button>
+                    </li>
+                    <li>
+                        <div class="points-counter">
+                            <span class="points-owner">
+                                280
+                            </span>
+                            <span class="points-requiered">
+                                of
+                            </span>
+                            <span class="points-requiered">
+                                500
+                            </span>
+                        </div>
+                        <hr>
+                        <h6>330ml beer</h6>
+                        <p>Canjealo por 1 cerveza nacional o importada de 330ml (consulta marcas participantes)</p>
+                        <button>Get</button>
+                    </li>
+                    <li>
+                        <div class="points-counter">
+                            <span class="points-owner">
+                                280
+                            </span>
+                            <span class="points-requiered">
+                                of
+                            </span>
+                            <span class="points-requiered">
+                                500
+                            </span>
+                        </div>
+                        <hr>
+                        <h6>330ml beer</h6>
+                        <p>Canjealo por 1 cerveza nacional o importada de 330ml (consulta marcas participantes)</p>
+                        <button>Get</button>
+                    </li>
+                </ul>
+                <ul class="business-transactions">
+                    <span>Transactions</span>
+                    <li>
+                        <h6 class="added">Points Added</h6>
+                        <div class="points-info">
+                            <span>50 points</span>
+                            <span>06/11/24</span>
+                        </div>
+                    </li>
+                    <li>
+                        <h6 class="spent">Points spent</h6>
+                        <div class="points-info">
+                            <span>350 points</span>
+                            <span>06/11/24</span>
+                        </div>
+                    </li>
+                    <li>
+                        <h6 class="spent">Points spent</h6>
+                        <div class="points-info">
+                            <span>350 points</span>
+                            <span>06/11/24</span>
+                        </div>
+                    </li>
+                    <li>
+                        <h6 class="spent">Points spent</h6>
+                        <div class="points-info">
+                            <span>350 points</span>
+                            <span>06/11/24</span>
+                        </div>
+                    </li>
+                    <li>
+                        <h6 class="added">Points Added</h6>
+                        <div class="points-info">
+                            <span>50 points</span>
+                            <span>06/11/24</span>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+            <li class="business-info">
+                <div class="top-business-info">
+                    <h5>Beef and drinks John</h5>
+                    <span>since 21/12/24</span>
+                </div>
+                <ul class="business-rewards">
+                    <li>
+                        <div class="points-counter">
+                            <span class="points-owner">
+                                280
+                            </span>
+                            <span class="points-requiered">
+                                of
+                            </span>
+                            <span class="points-requiered">
+                                500
+                            </span>
+                        </div>
+                        <hr>
+                        <h6>330ml beer</h6>
+                        <p>Canjealo por 1 cerveza nacional o importada de 330ml (consulta marcas participantes)</p>
+                        <button>Get</button>
+                    </li>
+                    <li>
+                        <div class="points-counter">
+                            <span class="points-owner">
+                                280
+                            </span>
+                            <span class="points-requiered">
+                                of
+                            </span>
+                            <span class="points-requiered">
+                                500
+                            </span>
+                        </div>
+                        <hr>
+                        <h6>330ml beer</h6>
+                        <p>Canjealo por 1 cerveza nacional o importada de 330ml (consulta marcas participantes)</p>
+                        <button>Get</button>
+                    </li>
+                    <li>
+                        <div class="points-counter">
+                            <span class="points-owner">
+                                280
+                            </span>
+                            <span class="points-requiered">
+                                of
+                            </span>
+                            <span class="points-requiered">
+                                500
+                            </span>
+                        </div>
+                        <hr>
+                        <h6>330ml beer</h6>
+                        <p>Canjealo por 1 cerveza nacional o importada de 330ml (consulta marcas participantes)</p>
+                        <button>Get</button>
+                    </li>
+                </ul>
+                <ul class="business-transactions">
+                    <span>Transactions</span>
+                    <li>
+                        <h6 class="added">Points Added</h6>
+                        <div class="points-info">
+                            <span>50 points</span>
+                            <span>06/11/24</span>
+                        </div>
+                    </li>
+                    <li>
+                        <h6 class="spent">Points spent</h6>
+                        <div class="points-info">
+                            <span>350 points</span>
+                            <span>06/11/24</span>
+                        </div>
+                    </li>
+                    <li>
+                        <h6 class="spent">Points spent</h6>
+                        <div class="points-info">
+                            <span>350 points</span>
+                            <span>06/11/24</span>
+                        </div>
+                    </li>
+                    <li>
+                        <h6 class="spent">Points spent</h6>
+                        <div class="points-info">
+                            <span>350 points</span>
+                            <span>06/11/24</span>
+                        </div>
+                    </li>
+                    <li>
+                        <h6 class="added">Points Added</h6>
+                        <div class="points-info">
+                            <span>50 points</span>
+                            <span>06/11/24</span>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+
+    {% endblock %}
+
+    <!-- window -->
+    <div id="show-qr" class="modal">
+        <div class="modal-contenido">
+            <div class="qr-window">
+                <h3 id="title-qr"></h3>
+                <img src="" alt="">
+                <button onclick="closeQrWindow()">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="bottom-menu">
+            <div class="bottom-option">
+                <i class="fa-solid fa-house"></i>
+            </div>
+            <div class="bottom-qr-option" onclick="showQrWindow('code', 'User QR')">
+                <i class="fa-solid fa-qrcode"></i>
+            </div>
+            <div class="bottom-option">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+    </footer>
+</body>
+
+<script>
+    function redirectToLogout(){
+        window.location.href = "{% url 'logout' %}";
+    }
+</script>
+<script>
+    //open window
+    function showQrWindow(code, content) {
+        document.getElementById("title-qr").textContent = content;
+
+        var modal = document.getElementById("show-qr");
+        modal.style.display = "block";
+    }
+    //close window
+    function closeQrWindow() {
+        var modal = document.getElementById("show-qr");
+        modal.style.display = "none";
+    }
+</script>
+{% block js %}
+
+{% endblock %}
+</html>

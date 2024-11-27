@@ -6,7 +6,7 @@ from publicPanel import views
 app_name = 'publicPanel'
 
 urlpatterns = [
-    #path('',views.index, name="home"),
+    #path('',views.userIndex, name="home"),
     
     
 ]
