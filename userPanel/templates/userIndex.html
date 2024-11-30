@@ -1,10 +1,10 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Admin{% endblock %}</title>
+    <title>{% block title %}Home{% endblock %}</title>
 
     <!-- SweetAlert2 CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
@@ -38,7 +38,7 @@
                 </div>
             </div>
             <div class="top-section">
-                <a href="" class="log-out">
+                <a href="" class="log-out" onclick="redirectToLogout()">
                     <i class="fa-solid fa-right-from-bracket"></i>
                 </a>
             </div>
@@ -358,13 +358,13 @@
 
     <footer>
         <div class="bottom-menu">
-            <div class="bottom-option">
+            <div class="bottom-option" onclick="redirectToHome()">
                 <i class="fa-solid fa-house"></i>
             </div>
             <div class="bottom-qr-option" onclick="showQrWindow('code', 'User QR')">
                 <i class="fa-solid fa-qrcode"></i>
             </div>
-            <div class="bottom-option">
+            <div class="bottom-option" onclick="redirectToOptions()">
                 <i class="fa-solid fa-bars"></i>
             </div>
         </div>
@@ -374,6 +374,12 @@
 <script>
     function redirectToLogout(){
         window.location.href = "{% url 'logout' %}";
+    }
+    function redirectToHome(){
+        window.location.href = "{% url 'userPanel:home' %}";
+    }
+    function redirectToOptions(){
+        window.location.href = "{% url 'userPanel:options' %}";
     }
 </script>
 <script>

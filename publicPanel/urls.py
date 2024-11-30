@@ -6,7 +6,10 @@ from publicPanel import views
 app_name = 'publicPanel'
 
 urlpatterns = [
-    #path('',views.userIndex, name="home"),
+    path('',views.index, name="home"),
+    path('signUp/',views.signUp, name="signUp"),
     
+    #APIs
+    path('usersApi/',views.usersApi, name="users-api"),
     
 ]

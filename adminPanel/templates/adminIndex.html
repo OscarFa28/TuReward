@@ -1,0 +1,249 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Admin{% endblock %}</title>
+
+    <!-- SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- CSS files -->
+    <link rel="stylesheet" type="text/css" href="{% static 'adminPanel/css/labels.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'publicPanel/css/colorPalette.css' %}">
+    {% block css %}
+        <link rel="stylesheet" type="text/css" href="{% static 'adminPanel/css/adminIndex.css' %}">
+    {% endblock %}
+
+    <!-- Fonts -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Expletus+Sans:wght@400;500;600;700&family=Inter:wght@100;200;300;400;500;600;700;800&display=swap');
+    </style>
+    <!-- Íconos-->
+    <script src="https://kit.fontawesome.com/c986eafe9b.js" crossorigin="anonymous"></script>
+    
+</head>
+<body>
+    <header>
+        <div class="top-menu">
+            <div class="top-section">
+                <div class="top-logo">
+                    <img src="" alt="">
+                </div>
+                <div class="name-div">
+                    <h3>Beef and Drinks John</h3>
+                </div>
+            </div>
+            <div class="top-section">
+                <a href="" class="log-out" onclick="redirectToLogout()">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    {% block content %}
+
+    <section class="content">
+
+        <div class="displays">
+            <div class="display-rewards">
+                <ul class="business-rewards">
+                    <li>
+                        <div class="points-counter">
+                            <span class="points-owner">
+                                points
+                            </span>
+                            <span class="points-requiered">
+                                requiered
+                            </span>
+                            <span class="points-requiered">
+                                500
+                            </span>
+                        </div>
+                        <hr>
+                        <h6>330ml beer</h6>
+                        <p>Canjealo por 1 cerveza nacional o importada de 330ml (consulta marcas participantes)</p>
+                        <button>Delete</button>
+                    </li>
+                    <li>
+                        <div class="points-counter">
+                            <span class="points-owner">
+                                points
+                            </span>
+                            <span class="points-requiered">
+                                requiered
+                            </span>
+                            <span class="points-requiered">
+                                500
+                            </span>
+                        </div>
+                        <hr>
+                        <h6>330ml beer</h6>
+                        <p>Canjealo por 1 cerveza nacional o importada de 330ml (consulta marcas participantes)</p>
+                        <button>Delete</button>
+                    </li>
+                    <li>
+                        <div class="points-counter">
+                            <span class="points-owner">
+                                points
+                            </span>
+                            <span class="points-requiered">
+                                requiered
+                            </span>
+                            <span class="points-requiered">
+                                500
+                            </span>
+                        </div>
+                        <hr>
+                        <h6>330ml beer</h6>
+                        <p>Canjealo por 1 cerveza nacional o importada de 330ml (consulta marcas participantes)</p>
+                        <button>Delete</button>
+                    </li>
+                    <li>
+                        <div class="points-counter">
+                            <span class="points-owner">
+                                points
+                            </span>
+                            <span class="points-requiered">
+                                requiered
+                            </span>
+                            <span class="points-requiered">
+                                500
+                            </span>
+                        </div>
+                        <hr>
+                        <h6>330ml beer</h6>
+                        <p>Canjealo por 1 cerveza nacional o importada de 330ml (consulta marcas participantes)</p>
+                        <button>Delete</button>
+                    </li>
+                </ul>
+           </div>
+    
+           <div class="add-reward-panel">
+            <h3>Add Reward</h3>
+            <form class="personal-info-form" id="modify-user" action="" method="post">
+                {% csrf_token %}
+                <ul class="personal-info-inputs">
+                    <li>
+                        <div class="input-logo">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <div class="input-info-label">
+                            <label for="title">Title</label>
+                            <input type="text" name="title" id="title" required>
+                        </div>
+                        <div class="input-pers-logo">
+                            <i class="fa-solid fa-pen"></i>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="input-logo">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <div class="input-info-label">
+                            <label for="first_name">Points requiered</label>
+                            <input type="number" step="1" min="1" name="points_requiered" id="points_requiered">
+                        </div>
+                        <div class="input-pers-logo">
+                            <i class="fa-solid fa-pen"></i>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="input-logo">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <div class="input-info-label">
+                            <label for="description">Description</label>
+                            <textarea name="" name="description" id="description">
+
+                            </textarea>
+                        </div>
+                        <div class="input-pers-logo">
+                            <i class="fa-solid fa-pen"></i>
+                        </div>
+                    </li>
+                </ul>
+                <div class="add-panel-buttons">
+                    <button class="button-settings-form" type="submit">Add</button>
+                </div>
+            </form>
+            <h3>Business info</h3>
+            <form class="personal-info-form" id="modify-user" action="" method="post">
+                {% csrf_token %}
+                <ul class="personal-info-inputs">
+                    <li>
+                        <div class="input-logo">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <div class="input-info-label">
+                            <label for="business_name">Name</label>
+                            <input type="text" name="business_name" id="business_name" required readonly>
+                        </div>
+                        <div class="input-pers-logo">
+                            
+                        </div>
+                    </li>
+                    <li>
+                        <div class="input-logo">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <div class="input-info-label">
+                            <label for="business_code">Business code</label>
+                            <input type="text" name="business_code" id="business_code" readonly>
+                        </div>
+                        <div class="input-pers-logo">
+                            
+                        </div>
+                    </li>
+
+                </ul>
+            </form>
+           </div>
+        </div>
+
+    </section>
+
+    {% endblock %}
+
+    <!-- window -->
+    <div id="show-qr" class="modal">
+        <div class="modal-contenido">
+            
+        </div>
+    </div>
+
+    <footer>
+        
+    </footer>
+</body>
+
+<script>
+    function redirectToLogout(){
+        window.location.href = "{% url 'logout' %}";
+    }
+    function redirectToHome(){
+        window.location.href = "{% url 'adminPanel:home' %}";
+    }
+</script>
+<script>
+    //open window
+    function showQrWindow(code, content) {
+        document.getElementById("title-qr").textContent = content;
+
+        var modal = document.getElementById("show-qr");
+        modal.style.display = "block";
+    }
+    //close window
+    function closeQrWindow() {
+        var modal = document.getElementById("show-qr");
+        modal.style.display = "none";
+    }
+</script>
+{% block js %}
+
+{% endblock %}
+</html>

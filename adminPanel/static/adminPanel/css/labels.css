@@ -28,7 +28,6 @@ button{
     background-color: var(--primary-100);
 }
 
-
 header{
     position: fixed;
     top: 0;
@@ -80,50 +79,6 @@ header{
     color: var(--accent-100);
 }
 
-.content{
-    margin: 5.5em 3%; 
-}
-
-
-footer{
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    height: 3.5em;
-    text-align: center;
-    line-height: 3.5em;
-    padding: 5%;
-    width: 90%;
-}
-.bottom-menu{
-    display: flex;
-    justify-content: space-between;
-    background: rgba(55, 55, 55, 0.5); 
-    backdrop-filter: blur(5px); 
-    -webkit-backdrop-filter: blur(5px);
-    padding: 0 5%;
-    border-radius: 1em;
-    color: var(--text-100);
-    align-items: center;
-}
-.bottom-option{
-    transition: .5s;
-}
-.bottom-qr-option{
-    font-size: 1.5em;
-    background: rgba(0, 0, 0, .7); 
-    width: 3em;
-    border-radius: .5em;
-    transition: .5s;
-    color: var(--text-100);
-}
-.bottom-option:hover{
-    color: var(--text-200);
-}
-.bottom-qr-option:hover{
-    color: var(--primary-100);
-}
-
 /* window */
 .modal {
     display: none;
@@ -151,39 +106,16 @@ footer{
     bottom: 10%;
     border-radius: 1em;
 }
-  .qr-window{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  .qr-window img{
-    background-color: white;
-    height: 15em;
-    width: 15em;
-    margin-top: 2em;
-  }
-  .qr-window button{
-    margin-top: 3em;
-    border: 2px solid var(--primary-100);
-    background-color: transparent;
-    border-radius: .5em;
-    padding: .3em;
-    font-size: 1.1em;
-    font-weight: 600;
-    width: 10em;
-    color: var(--primary-100);
-    transition: .5s;
-  }
-  .qr-window button:hover{
-    background-color: var(--primary-100);
-    color: var(--bg-100);
-  }
-  .qr-window h3{
-    color: var(--text-100);
-  }
 
-  @media (min-width: 700px){
+
+
+.content{
+    margin: 5.5em 3%; 
+}
+
+
+
+@media (min-width: 700px){
     header{
         width: 70%;
         padding: 1% 15%;
@@ -193,9 +125,5 @@ footer{
     }
     .content{
         margin: 6em 10%; 
-    }
-    footer{
-        width: 70%;
-        padding: 1% 15%;
     }
   }

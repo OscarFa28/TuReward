@@ -45,7 +45,7 @@
     color: var(--text-200);
 }
 .business-rewards li hr{
-    color: var(--text-200);
+    border: 1px solid var(--text-200);
 }
 .business-rewards li h6{
     color: var(--primary-100);
@@ -109,3 +109,4 @@
     color: var(--text-200);
     margin-top: .1em
 }
+

@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <!-- CSS files -->
+        <link rel="stylesheet" type="text/css" href="{% static 'publicPanel/css/colorPalette.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'publicPanel/css/login_general.css' %}">
+
+    <!-- Fonts -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Expletus+Sans:wght@400;500;600;700&family=Inter:wght@100;200;300;400;500;600;700;800&display=swap');
+    </style>
+    <!-- Íconos-->
+    <script src="https://kit.fontawesome.com/c986eafe9b.js" crossorigin="anonymous"></script>
+    <!-- Ícono -->
+    <link rel="icon" type="image/png" href="{% static 'publicPanel/svg/TuReward_main_logo.svg' %}">
+</head>
+<body>
+    <header class="nav-bar">
+        <div class="nav-panel">
+            <h2 class="main-tittle">Tu Reward</h2>
+        </div>
+    </header>
+    <section class="login">
+        <div class="login-panel">
+            <h1>Login</h1>
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                        <div class="input-group">
+                            <label for="username"><span class="label-text">User:</span><i class="fa-solid fa-user-large"></i></label>
+                            <input type="text" id="username" name="username" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="password"><span class="label-text">Password:</span><i class="fa-solid fa-lock"></i></label>
+                            <input type="password" id="password" name="password" required>
+                        </div>
+                </div>
+                <!-- Mensaje de error en caso de contraseña incorrecta -->
+                <p class="errorM">
+                    {% if form.errors %}
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <span class="error-message">{{ error|escape }}</span>
+                            {% endfor %}
+                        {% endfor %}
+                
+                        {% for error in form.non_field_errors %}
+                            <span class="error-message">{{ error|escape }}</span>
+                        {% endfor %}
+                    {% endif %}
+                </p>
+                <div class="access-button">
+                    <button type="submit">Access</button>
+                </div>
+            </form>
+            <div class="no-account">
+                <p>No account? <span class="contact-us" onclick="redirectToSignUp()">Sign up</span></p>
+            </div>
+        </div>
+    </section>
+    
+    
+
+</body>
+<script>
+    function redirectToSignUp(){
+        window.location.href = "{% url 'publicPanel:signUp' %}";
+    }
+</script>
+
+</html>

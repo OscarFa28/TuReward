@@ -1,0 +1,144 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en"></html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sign Up</title>
+        
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <!-- CSS files -->
+        <link rel="stylesheet" type="text/css" href="{% static 'publicPanel/css/colorPalette.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'publicPanel/css/create_account.css' %}">
+        <!-- Fonts -->
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Expletus+Sans:wght@400;500;600;700&family=Inter:wght@100;200;300;400;500;600;700;800&display=swap');
+        </style>
+        <!-- Íconos-->
+        <script src="https://kit.fontawesome.com/c986eafe9b.js" crossorigin="anonymous"></script>
+        <!-- Ícono -->
+        <link rel="icon" type="image/png" href="{% static 'publicPanel/svg/icon_TuReward.svg' %}">
+    </head>
+<body>
+    <header class="title-page">
+        <h1>Sign Up</h1>
+    </header>
+    <section class="account_section">
+        <div class="panel">
+            <div onclick="redirectToHome()" class="logo-panel">
+                <img src="{% static 'panammun_panel/svg/icon_panammun.svg' %}" alt="">
+            </div>
+            <div class="text-panel">
+                <h2>Tu Reward</h2>
+            </div>
+            <div class="main-panel">
+                <form class="main-form" id="user-form" method="post" enctype="multipart/form-data" action="{% url 'publicPanel:users-api' %}">
+                    {% csrf_token %}
+                    <ul>
+                        <div class="two-inputs">
+                            <li style="margin-right: .5em;">
+                                <label for="full_name">Name</label>
+                                <div class="top-input">
+                                    <input type="text" name="first_name" placeholder="Enter your name" maxlength="30" required>
+                                    <i class="fa-solid fa-user"></i>
+                                </div>
+                                <hr>
+                            </li>
+                            <li style="margin-left: .5em;">
+                                <label for="full_name">Last name</label>
+                                <div class="top-input">
+                                    <input type="text" name="last_name" maxlength="50" placeholder="Enter your last name" required>
+                                    <i class="fa-solid fa-user"></i>
+                                </div>
+                                <hr>
+                            </li>
+                        </div>
+                        <div class="two-inputs">
+                            <li style="margin-right: .5em;">
+                                <label for="username">Username</label>
+                                <div class="top-input">
+                                    <input type="text" name="username" placeholder="Create username" autocomplete="new-username" maxlength="20" required>
+                                    <input type="hidden" name="account_type" value="normal_user">
+                                    <i class="fa-solid fa-circle-user"></i>
+                                </div>
+                                <hr>
+                            </li>
+                            <li style="margin-left: .5em;">
+                                <label for="full_name">Phone</label>
+                                <div class="top-input">
+                                    <input type="tel" name="phone_number" maxlength="15" placeholder="Enter phone number" required>
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>
+                                <hr>
+                            </li>
+                        </div>
+                        <li>
+                            <label for="email">Email</label>
+                            <div class="top-input">
+                                <input type="email" name="email" placeholder="Enter email" required>
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <hr>
+                        </li>
+                        <div class="two-inputs">
+                            <li style="margin-right: .5em;">
+                                <label for="password">Password</label>
+                                <div class="top-input">
+                                    <input type="password" id="password" name="password" minlength="8" placeholder="Create password" autocomplete="new-password" required>
+                                    <i class="fa-solid fa-lock"></i>
+                                </div>
+                                <hr>
+                            </li>
+                            <li style="margin-left: .5em;">
+                                <label for="password">Repeat Password</label>
+                                <div class="top-input">
+                                    <input type="password" id="password2" name="passwordConfirm" minlength="8" placeholder="Repeat password" autocomplete="new-password" required>
+                                    <i class="fa-solid fa-lock"></i>
+                                </div>
+                                <hr>
+                            </li>
+                        </div>
+                        <li>
+                            <label for="email">Business code</label>
+                            <div class="top-input">
+                                <input type="text" name="code" placeholder="Enter business code (optional)" required>
+                                <i class="fa-solid fa-barcode"></i>
+                            </div>
+                            <hr>
+                        </li>
+                    </ul>
+                    <p class="errorM">
+                        {% if form.errors %}
+                            {% for field in form %}
+                                {% for error in field.errors %}
+                                    <span class="error-message">{{ error|escape }}</span>
+                                {% endfor %}
+                            {% endfor %}
+                    
+                            {% for error in form.non_field_errors %}
+                                <span class="error-message">{{ error|escape }}</span>
+                            {% endfor %}
+                        {% endif %}
+                    </p>
+                    <button type="submit">Create</button>
+                </form>
+                <div class="no-account">
+                    <span>Already have account? </span><span><a href="{% url 'login' %}">Sign in</a></span>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+<!-- JS files -->
+<script src="{% static 'publicPanel/js/create_account.js' %}"></script>
+<script type="text/javascript">
+    window.csrfToken = "{{ csrf_token }}";
+</script>
+<script>
+    function redirectToHome(){
+        window.location.href = "{% url 'publicPanel:home' %}";
+    }
+</script>
+
+</html>

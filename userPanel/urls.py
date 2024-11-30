@@ -7,6 +7,7 @@ app_name = 'userPanel'
 
 urlpatterns = [
     path('',views.userIndex, name="home"),
+    path('options/',views.userOptions, name="options"),
     
     
 ]
