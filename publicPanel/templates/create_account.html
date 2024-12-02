@@ -33,7 +33,7 @@
                 <h2>Tu Reward</h2>
             </div>
             <div class="main-panel">
-                <form class="main-form" id="user-form" method="post" enctype="multipart/form-data" action="{% url 'publicPanel:users-api' %}">
+                <form class="main-form" id="user-form" method="post" enctype="multipart/form-data" action="{% url 'adminPanel:create-normal-user' %}">
                     {% csrf_token %}
                     <ul>
                         <div class="two-inputs">
@@ -65,9 +65,9 @@
                                 <hr>
                             </li>
                             <li style="margin-left: .5em;">
-                                <label for="full_name">Phone</label>
+                                <label for="full_name">Phone (optional)</label>
                                 <div class="top-input">
-                                    <input type="tel" name="phone_number" maxlength="15" placeholder="Enter phone number" required>
+                                    <input type="tel" name="phone_number" maxlength="15" placeholder="Enter phone number">
                                     <i class="fa-solid fa-phone"></i>
                                 </div>
                                 <hr>
@@ -100,9 +100,9 @@
                             </li>
                         </div>
                         <li>
-                            <label for="email">Business code</label>
+                            <label for="email">Business code (optional)</label>
                             <div class="top-input">
-                                <input type="text" name="code" placeholder="Enter business code (optional)" required>
+                                <input type="text" name="code" placeholder="Enter business code (optional)">
                                 <i class="fa-solid fa-barcode"></i>
                             </div>
                             <hr>

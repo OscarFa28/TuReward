@@ -34,7 +34,7 @@
                     <img src="" alt="">
                 </div>
                 <div class="name-div">
-                    <h3>Beef and Drinks John</h3>
+                    <h3>{{ user.username }}</h3>
                 </div>
             </div>
             <div class="top-section">
@@ -47,11 +47,14 @@
 
     {% block content %}
 
+    {% for business, rewards in businesses_with_rewards.items %}
     <section class="content">
 
         <div class="displays">
             <div class="display-rewards">
+                <h2>{{ business.name }}</h2>
                 <ul class="business-rewards">
+                    {% for reward in rewards %}
                     <li>
                         <div class="points-counter">
                             <span class="points-owner">
@@ -61,72 +64,25 @@
                                 requiered
                             </span>
                             <span class="points-requiered">
-                                500
+                                {{ reward.points_requiered }}
                             </span>
                         </div>
                         <hr>
-                        <h6>330ml beer</h6>
-                        <p>Canjealo por 1 cerveza nacional o importada de 330ml (consulta marcas participantes)</p>
-                        <button>Delete</button>
+                        <h6>{{ reward.title }}</h6>
+                        <p>{{ reward.description }}</p>
+                        <button onclick="deleteReward({{ reward.id }})">Delete</button>
                     </li>
-                    <li>
-                        <div class="points-counter">
-                            <span class="points-owner">
-                                points
-                            </span>
-                            <span class="points-requiered">
-                                requiered
-                            </span>
-                            <span class="points-requiered">
-                                500
-                            </span>
-                        </div>
-                        <hr>
-                        <h6>330ml beer</h6>
-                        <p>Canjealo por 1 cerveza nacional o importada de 330ml (consulta marcas participantes)</p>
-                        <button>Delete</button>
-                    </li>
-                    <li>
-                        <div class="points-counter">
-                            <span class="points-owner">
-                                points
-                            </span>
-                            <span class="points-requiered">
-                                requiered
-                            </span>
-                            <span class="points-requiered">
-                                500
-                            </span>
-                        </div>
-                        <hr>
-                        <h6>330ml beer</h6>
-                        <p>Canjealo por 1 cerveza nacional o importada de 330ml (consulta marcas participantes)</p>
-                        <button>Delete</button>
-                    </li>
-                    <li>
-                        <div class="points-counter">
-                            <span class="points-owner">
-                                points
-                            </span>
-                            <span class="points-requiered">
-                                requiered
-                            </span>
-                            <span class="points-requiered">
-                                500
-                            </span>
-                        </div>
-                        <hr>
-                        <h6>330ml beer</h6>
-                        <p>Canjealo por 1 cerveza nacional o importada de 330ml (consulta marcas participantes)</p>
-                        <button>Delete</button>
-                    </li>
+                    {% empty %}
+                        <li>No rewards available for this business.</li>
+                    {% endfor %}
                 </ul>
            </div>
     
            <div class="add-reward-panel">
             <h3>Add Reward</h3>
-            <form class="personal-info-form" id="modify-user" action="" method="post">
+            <form class="personal-info-form" id="add-reward" action="{% url 'adminPanel:rewards-api' %}" method="post">
                 {% csrf_token %}
+                <input type="hidden" value="{{ business.id }}" name="business" id="business">
                 <ul class="personal-info-inputs">
                     <li>
                         <div class="input-logo">
@@ -134,7 +90,7 @@
                         </div>
                         <div class="input-info-label">
                             <label for="title">Title</label>
-                            <input type="text" name="title" id="title" required>
+                            <input type="text" name="title" id="title" maxlength="25" required>
                         </div>
                         <div class="input-pers-logo">
                             <i class="fa-solid fa-pen"></i>
@@ -158,7 +114,7 @@
                         </div>
                         <div class="input-info-label">
                             <label for="description">Description</label>
-                            <textarea name="" name="description" id="description">
+                            <textarea name="description" id="description" maxlength="250">
 
                             </textarea>
                         </div>
@@ -181,7 +137,7 @@
                         </div>
                         <div class="input-info-label">
                             <label for="business_name">Name</label>
-                            <input type="text" name="business_name" id="business_name" required readonly>
+                            <input type="text" value="{{ business.name }}" name="business_name" id="business_name" required readonly>
                         </div>
                         <div class="input-pers-logo">
                             
@@ -193,7 +149,7 @@
                         </div>
                         <div class="input-info-label">
                             <label for="business_code">Business code</label>
-                            <input type="text" name="business_code" id="business_code" readonly>
+                            <input type="text" value="{{ business.code }}" name="business_code" id="business_code" readonly>
                         </div>
                         <div class="input-pers-logo">
                             
@@ -206,18 +162,33 @@
         </div>
 
     </section>
+    {% endfor %}
 
     {% endblock %}
 
     <!-- window -->
     <div id="show-qr" class="modal">
         <div class="modal-contenido">
-            
+            <div class="qr-window">
+                <h3 id="title-qr"></h3>
+                <img src="" alt="">
+                <button onclick="closeQrWindow()">Cerrar</button>
+            </div>
         </div>
     </div>
 
     <footer>
-        
+        <div class="bottom-menu">
+            <div class="bottom-option" onclick="redirectToHome()">
+                <i class="fa-solid fa-house"></i>
+            </div>
+            <div class="bottom-qr-option" onclick="showQrWindow('code', 'Business QR')">
+                <i class="fa-solid fa-qrcode"></i>
+            </div>
+            <div class="bottom-option" onclick="redirectToScan()">
+                <i class="fa-solid fa-expand"></i>
+            </div>
+        </div>
     </footer>
 </body>
 
@@ -228,7 +199,28 @@
     function redirectToHome(){
         window.location.href = "{% url 'adminPanel:home' %}";
     }
+    function redirectToScan(){
+        window.location.href = "{% url 'adminPanel:scan' %}";
+    }
 </script>
+<script>
+    //open window
+    function showQrWindow(code, content) {
+        document.getElementById("title-qr").textContent = content;
+
+        var modal = document.getElementById("show-qr");
+        modal.style.display = "block";
+    }
+    //close window
+    function closeQrWindow() {
+        var modal = document.getElementById("show-qr");
+        modal.style.display = "none";
+    }
+</script>
+<script type="text/javascript">
+    window.csrfToken = "{{ csrf_token }}";
+</script>
+<script src="{% static 'adminPanel/js/adminIndex.js' %}"></script>
 <script>
     //open window
     function showQrWindow(code, content) {

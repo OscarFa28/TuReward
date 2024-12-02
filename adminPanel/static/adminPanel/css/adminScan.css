@@ -1,0 +1,115 @@
+.scan-panel{
+    display: flex;
+    flex-direction: column;
+}
+
+.scan-screen{
+    display: flex;
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.turn-on-scan{
+    background-color: var(--primary-200);
+    border-radius: 1em;
+    padding: .5em 1em;
+    color: var(--bg-100);
+    font-weight: 600;
+    margin-bottom: 1em;
+    border: 2px solid var(--primary-200);
+    font-size: 1.1em;
+    margin-top: 1em;
+}
+.scan-square{
+    width: 15em;
+    height: 15em;
+    border: 2px solid var(--primary-100);
+    margin-bottom: 1em;
+    border-radius: .5em;
+}
+.scan-square video{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 100%;
+    width: auto; 
+    object-fit: cover; 
+    transform: translate(-50%, -50%);
+    border-radius: .5em;
+}
+.scan-screen span{
+    width: 75%;
+    font-weight: 600;
+}
+.choose-camera{
+    width: 70%;
+    list-style: none;
+    margin: 0;
+    height: 6em;
+    padding: .5em;
+    overflow-y: auto;
+}
+.choose-camera li{
+    cursor: pointer;
+    background-color: var(--bg-200);
+    border-radius: .5em;
+    margin-bottom: .2em;
+    transition: .2s;
+    padding: .1em;
+}
+.choose-camera li:hover{
+    background-color: var(--bg-300);
+}
+
+.business-transactions{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-top: 1em;
+}
+.business-transactions span{
+    margin-left: .5em;
+    margin-bottom: .5em;
+}
+.business-transactions li{
+    background-color: var(--bg-200);
+    margin: .3em .5em;
+    border-radius: 1em;
+    padding: .3em;
+    width: 100%;
+}
+.business-transactions li h6{
+    margin: 0;
+    font-size: 1.1em;
+    width: 100%;
+    text-align: center;
+}
+.added{
+    color: #48cc3f;
+}
+.spent{
+    color: var(--accent-100);
+}
+.points-info{
+    display: flex;
+    justify-content: space-between;
+    color: var(--text-200);
+    margin-top: .1em
+}
+
+@media (min-width: 700px){
+    .scan-panel{
+        flex-direction: row; 
+    }
+    .scan-screen{
+        width: 50%;
+    }
+    .business-transactions{
+        width: 50%;
+    }
+  }

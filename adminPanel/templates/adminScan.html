@@ -1,0 +1,52 @@
+{% extends 'adminIndex.html' %}
+{% load static %}
+
+    {% block title %}Options{% endblock %}
+
+    {% block css %}
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+
+    
+    <link rel="stylesheet" type="text/css" href="{% static 'adminPanel/css/adminScan.css' %}">
+    {% endblock %}
+
+
+    {% block content %}
+
+    <section class="content">
+        
+        <div class="scan-panel">
+            <div class="scan-screen" id="scan-screen">
+                <button class="turn-on-scan" id="turn-cam" onclick="scanAction(null)">Turn on</button>
+                <div class="scan-square" id="reader">
+                    
+                </div>
+                <span>Choose camera</span>
+                <ul class="choose-camera" id="choose-cam">
+                    
+                </ul>
+            </div>
+            <ul class="business-transactions">
+                {% for business, transactions in business_transactions.items %}
+                <span>{{ business.name }}</span>
+                    {% for transaction in transactions %}
+                    <li>
+                        <h6 class="added">{{ transaction.title }}</h6>
+                        <div class="points-info">
+                            <span>{{ transaction.amount }} points</span>
+                            <span>{{ transaction.user.username }}</span>
+                            <span>{{ transaction.date|date:"d/m/y" }}</span>
+                        </div>
+                    </li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+        
+    </section>
+
+    {% endblock %}
+
+{% block js %}
+<script src="{% static 'adminPanel/js/adminScan.js' %}"></script>
+{% endblock %}

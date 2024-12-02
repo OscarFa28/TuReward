@@ -2,8 +2,8 @@ document.getElementById('user-form').addEventListener('submit', function(event) 
     var password = document.getElementById('password').value;
     var password2 = document.getElementById('password2').value;
     if (password !== password2) {
-        alert('Not same passwords');
         event.preventDefault();
+        alert('Not same passwords');
     }
 });
 function getCSRFToken() {
@@ -15,11 +15,11 @@ const form = document.getElementById('user-form');
         event.preventDefault();
         
         const formData = new FormData(form);
-
+        console.log(formData);
         try {
             const response = await fetch(form.action, {
                 method: 'POST',
-                body: formData,
+                body: formData, 
                 headers: {
                     'X-CSRFToken': getCSRFToken()
                 }
@@ -44,8 +44,8 @@ const form = document.getElementById('user-form');
             
             Swal.fire({
                 icon: 'success',
-                title: 'Éxito',
-                text: 'Se ha registrado.',
+                title: 'Success',
+                text: 'Sign up successfully.',
                 confirmButtonColor: 'var(--primary-100)',
                 color: 'var(--text-100)',
                 background: 'var(--bg-100)',
@@ -64,3 +64,6 @@ const form = document.getElementById('user-form');
             });
         }
       });
+
+       
+        

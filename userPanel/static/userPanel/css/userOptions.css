@@ -2,6 +2,9 @@
     width: 100%;
     border: 2px solid var(--text-100);
   }
+  .form-title{
+    margin-bottom: 0;
+  }
   .personal-info-form{
     width: 100%;
     display: flex;
@@ -17,7 +20,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 3em;
+    margin-top: 2em;
 }
 .personal-info-inputs li{
     display: flex;

@@ -1,0 +1,4 @@
+lista de pendientes:
+- agregar que al crear cuenta se vincule con el negocio, en cuanto se vincule el negocio tambien se tiene que crear un modelo de puntos entre el usuario y el negocio
+- agregar panel de canjear los puntos
+- agregar lista de trasacciones en canjear los puntos

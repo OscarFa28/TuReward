@@ -11,7 +11,32 @@
     {% block content %}
 
     <section class="content">
-        <form class="personal-info-form" id="modify-user" action="{% url 'adminPanel:usersModifyApi' %}" method="post">
+        <h3 class="form-title">Add business</h3>
+        <form class="personal-info-form" id="add-business" action="" method="post">
+            {% csrf_token %}
+            <ul class="personal-info-inputs">
+                <li>
+                    <div class="input-logo">
+                        <i class="fa-solid fa-key"></i>
+                    </div>
+                    <div class="input-info-label">
+                        <label for="username">Business CODE</label>
+                        <input type="text" name="code" id="businessCode" required>
+                    </div>
+                    <div class="input-pers-logo">
+                        <i class="fa-solid fa-pen"></i>
+                    </div>
+                </li>
+                
+            </ul>
+            <div class="add-panel-buttons">
+                <button class="button-settings-form" type="submit">Add</button>
+            </div>
+            
+        </form>
+
+        <h3 class="form-title">Personal info</h3>
+        <form class="personal-info-form" id="modify-user" action="" method="post">
             {% csrf_token %}
             <ul class="personal-info-inputs">
                 <li>

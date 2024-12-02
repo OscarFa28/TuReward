@@ -44,7 +44,7 @@ button:hover{
     letter-spacing: .1em;
 }
 .nav-panel:hover .main-tittle{
-    color: var(--bg-100) !important;
+    color: var(--text-100) !important;
 }
 .main-tittle{
     margin: 0;
