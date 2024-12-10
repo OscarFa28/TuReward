@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import CustomUser, Business, UserBusinessRelation, Reward, Transaction, UserBusinessPoints
+from .models import CustomUser, Business, UserBusinessRelation, Reward, Transaction
 
 
 
@@ -16,7 +16,7 @@ class BusinessAdmin(admin.ModelAdmin):
 
 @admin.register(UserBusinessRelation)
 class UserBusinessRelationAdmin(admin.ModelAdmin):
-    list_display = ('user', 'business')
+    list_display = ('user', 'business', 'points')
     search_fields = ('user__username', 'business__name')
 
 @admin.register(Reward)
@@ -30,7 +30,3 @@ class TransactionAdmin(admin.ModelAdmin):
     list_filter = ('business', 'date')
     search_fields = ('title',)
 
-@admin.register(UserBusinessPoints)
-class UserBusinessPointsAdmin(admin.ModelAdmin):
-    list_display = ('user', 'business', 'points')
-    list_filter = ('business',)

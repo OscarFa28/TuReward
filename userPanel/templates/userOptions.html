@@ -12,7 +12,7 @@
 
     <section class="content">
         <h3 class="form-title">Add business</h3>
-        <form class="personal-info-form" id="add-business" action="" method="post">
+        <form class="personal-info-form" id="add-business" action="{% url 'adminPanel:add-business-api' %}" method="post">
             {% csrf_token %}
             <ul class="personal-info-inputs">
                 <li>
@@ -36,7 +36,7 @@
         </form>
 
         <h3 class="form-title">Personal info</h3>
-        <form class="personal-info-form" id="modify-user" action="" method="post">
+        <form class="personal-info-form" id="modify-user" action="{% url 'adminPanel:update-personal-info-api' %}" method="post">
             {% csrf_token %}
             <ul class="personal-info-inputs">
                 <li>
@@ -45,7 +45,7 @@
                     </div>
                     <div class="input-info-label">
                         <label for="username">Username</label>
-                        <input type="text" name="username" id="usernameM" required readonly>
+                        <input type="text" name="username" value="{{ user.username }}" id="usernameM" required readonly>
                     </div>
                     <div class="input-pers-logo">
                         <i class="fa-solid fa-pen"></i>
@@ -57,7 +57,7 @@
                     </div>
                     <div class="input-info-label">
                         <label for="first_name">Name</label>
-                        <input type="text" name="first_name" id="first_nameM">
+                        <input type="text" value="{{ user.first_name }}" name="first_name" id="first_nameM" required>
                     </div>
                     <div class="input-pers-logo">
                         <i class="fa-solid fa-pen"></i>
@@ -69,7 +69,7 @@
                     </div>
                     <div class="input-info-label">
                         <label for="last_name">Last name</label>
-                        <input type="text" name="last_name" id="last_nameM">
+                        <input type="text" value="{{ user.last_name }}" name="last_name" id="last_nameM" required>
                     </div>
                     <div class="input-pers-logo">
                         <i class="fa-solid fa-pen"></i>
@@ -81,7 +81,7 @@
                     </div>
                     <div class="input-info-label">
                         <label for="phone_number">Phone</label>
-                        <input type="tel" name="phone_number" id="phone_numberM">
+                        <input type="tel" value="{{ user.phone }}" name="phone_number" id="phone_numberM">
                     </div>
                     <div class="input-pers-logo">
                         <i class="fa-solid fa-pen"></i>
@@ -93,7 +93,7 @@
                     </div>
                     <div class="input-info-label">
                         <label for="email">Email</label>
-                        <input type="email" name="email" id="emailM">
+                        <input type="email" value="{{ user.email }}" name="email" id="emailM" required>
                     </div>
                     <div class="input-pers-logo">
                         <i class="fa-solid fa-pen"></i>
@@ -110,5 +110,5 @@
     {% endblock %}
 
 {% block js %}
-
+<script src="{% static 'userPanel/js/userOptions.js' %}"></script>
 {% endblock %}

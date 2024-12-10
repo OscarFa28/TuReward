@@ -31,14 +31,14 @@
         <div class="top-menu">
             <div class="top-section">
                 <div class="top-logo">
-                    <img src="" alt="">
+                    <img src="{% static 'publicPanel/svg/main_logo.svg' %}" alt="">
                 </div>
                 <div class="name-div">
                     <h3>{{ user.username }}</h3>
                 </div>
             </div>
             <div class="top-section">
-                <a href="" class="log-out" onclick="redirectToLogout()">
+                <a class="log-out" onclick="redirectToLogout()">
                     <i class="fa-solid fa-right-from-bracket"></i>
                 </a>
             </div>
@@ -170,8 +170,10 @@
     <div id="show-qr" class="modal">
         <div class="modal-contenido">
             <div class="qr-window">
-                <h3 id="title-qr"></h3>
-                <img src="" alt="">
+                {% for business in user_business %}
+                    <h3 id="title-qr">{{ business.name }}</h3>
+                    <img src="{% if business.qrCode %}{{ business.qrCode.url }}{% else %}null{% endif %}" alt="">
+                {% endfor %}
                 <button onclick="closeQrWindow()">Cerrar</button>
             </div>
         </div>
@@ -182,7 +184,7 @@
             <div class="bottom-option" onclick="redirectToHome()">
                 <i class="fa-solid fa-house"></i>
             </div>
-            <div class="bottom-qr-option" onclick="showQrWindow('code', 'Business QR')">
+            <div class="bottom-qr-option" onclick="showQrWindow()">
                 <i class="fa-solid fa-qrcode"></i>
             </div>
             <div class="bottom-option" onclick="redirectToScan()">
@@ -205,9 +207,7 @@
 </script>
 <script>
     //open window
-    function showQrWindow(code, content) {
-        document.getElementById("title-qr").textContent = content;
-
+    function showQrWindow() {
         var modal = document.getElementById("show-qr");
         modal.style.display = "block";
     }
@@ -221,20 +221,7 @@
     window.csrfToken = "{{ csrf_token }}";
 </script>
 <script src="{% static 'adminPanel/js/adminIndex.js' %}"></script>
-<script>
-    //open window
-    function showQrWindow(code, content) {
-        document.getElementById("title-qr").textContent = content;
 
-        var modal = document.getElementById("show-qr");
-        modal.style.display = "block";
-    }
-    //close window
-    function closeQrWindow() {
-        var modal = document.getElementById("show-qr");
-        modal.style.display = "none";
-    }
-</script>
 {% block js %}
 
 {% endblock %}

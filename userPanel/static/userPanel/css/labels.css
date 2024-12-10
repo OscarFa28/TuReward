@@ -5,7 +5,7 @@ body {
     font-family: 'Expletus Sans', sans-serif;
     color: var(--text-100);
 }
-button{
+button, a{
     cursor: pointer;
 }
 ::-webkit-scrollbar {
