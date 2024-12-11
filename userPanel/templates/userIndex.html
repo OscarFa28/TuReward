@@ -34,7 +34,7 @@
                     <img src="{% static 'publicPanel/svg/main_logo.svg' %}" alt="">
                 </div>
                 <div class="name-div">
-                    <h3>{{ user.first_name }}</h3>
+                    <h3>{{ user.username }}</h3>
                 </div>
             </div>
             <div class="top-section">
@@ -68,7 +68,7 @@
                                 <hr>
                                 <h6>{{ reward.title }}</h6>
                                 <p>{{ reward.description }}</p>
-                                <button>Get</button>
+                                <button onclick="showQrWindow('{% if reward.qrCode %}{{ reward.qrCode.url }}{% else %}null{% endif %}', '{{ reward.title }}')">Get</button>
                             </li>
                         {% endfor %}
                     </ul>
@@ -101,8 +101,8 @@
         <div class="modal-contenido">
             <div class="qr-window">
                 <h3 id="title-qr"></h3>
-                <img src="" alt="">
-                <button onclick="closeQrWindow()">Cerrar</button>
+                <img id="img-id" src="" alt="">
+                <button onclick="closeQrWindow()">Close</button>
             </div>
         </div>
     </div>
@@ -112,7 +112,7 @@
             <div class="bottom-option" onclick="redirectToHome()">
                 <i class="fa-solid fa-house"></i>
             </div>
-            <div class="bottom-qr-option" onclick="showQrWindow('code', 'User QR')">
+            <div class="bottom-qr-option" onclick="showQrWindow('{% if user.qrCode %}{{ user.qrCode.url }}{% else %}null{% endif %}', 'User QR')">
                 <i class="fa-solid fa-qrcode"></i>
             </div>
             <div class="bottom-option" onclick="redirectToOptions()">
@@ -137,6 +137,7 @@
     //open window
     function showQrWindow(code, content) {
         document.getElementById("title-qr").textContent = content;
+        document.getElementById("img-id").src = code;
 
         var modal = document.getElementById("show-qr");
         modal.style.display = "block";

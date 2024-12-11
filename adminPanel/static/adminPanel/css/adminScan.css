@@ -22,6 +22,14 @@
     font-size: 1.1em;
     margin-top: 1em;
 }
+.change-button{
+    padding: .5em 1em;
+    border: 2px solid var(--accent-100);
+    border-radius: 1em;
+    color: var(--accent-100);
+    font-weight: 600;
+    background-color: transparent;
+}
 .scan-square{
     width: 15em;
     height: 15em;

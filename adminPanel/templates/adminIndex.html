@@ -174,7 +174,7 @@
                     <h3 id="title-qr">{{ business.name }}</h3>
                     <img src="{% if business.qrCode %}{{ business.qrCode.url }}{% else %}null{% endif %}" alt="">
                 {% endfor %}
-                <button onclick="closeQrWindow()">Cerrar</button>
+                <button onclick="closeQrWindow()">Close</button>
             </div>
         </div>
     </div>

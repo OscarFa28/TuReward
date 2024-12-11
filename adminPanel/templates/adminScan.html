@@ -17,6 +17,55 @@
         
         <div class="scan-panel">
             <div class="scan-screen" id="scan-screen">
+                <button class="change-button" onclick="changeReedem()" id="change-reedem">Change to redeem</button>
+                <form class="personal-info-form" id="add-form-scan" action="" method="post">
+                    <ul class="personal-info-inputs">
+                        <li>
+                            <div class="input-logo">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <div class="input-info-label">
+                                <label for="amount">Amount</label>
+                                <input type="number" name="amount" id="amount" step="1" min="1" required>
+                            </div>
+                            <div class="input-pers-logo">
+                                <i class="fa-solid fa-pen"></i>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="input-logo">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <div class="input-info-label">
+                                <label for="first_name">Business</label>
+                                <select id="business" name="business">
+                                    {% for business in user_business %}
+                                        <option value="{{ business.id }}">{{ business.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="input-pers-logo">
+                                <i class="fa-solid fa-pen"></i>
+                            </div>
+                        </li>
+                    </ul>
+                </form>
+                <form class="personal-info-form" id="reedem-scan" action="" method="post">
+                    <ul class="personal-info-inputs">
+                        <li>
+                            <div class="input-logo">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <div class="input-info-label">
+                                <label for="username">Customer Username</label>
+                                <input type="text" name="username" id="username" required>
+                            </div>
+                            <div class="input-pers-logo">
+                                <i class="fa-solid fa-pen"></i>
+                            </div>
+                        </li>
+                    </ul>
+                </form>
                 <button class="turn-on-scan" id="turn-cam" onclick="scanAction(null)">Turn on</button>
                 <div class="scan-square" id="reader">
                     
@@ -49,4 +98,5 @@
 
 {% block js %}
 <script src="{% static 'adminPanel/js/adminScan.js' %}"></script>
+
 {% endblock %}

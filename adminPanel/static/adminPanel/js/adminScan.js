@@ -3,6 +3,25 @@ const startScanButton = document.getElementById('turn-cam');
 const readerDiv = document.getElementById('reader');
 let html5QrCode;
 let scanning = false;
+let reedem = false;
+
+
+function changeReedem(){
+  reedem = !reedem;
+  if (reedem == true) {
+      var modal = document.getElementById("add-form-scan");
+      modal.style.display = "none";
+      var modal = document.getElementById("reedem-scan");
+      modal.style.display = "flex";
+      document.getElementById("change-reedem").textContent = 'Change to add';
+  }else{
+    var modal = document.getElementById("reedem-scan");
+      modal.style.display = "none";
+      document.getElementById("change-reedem").textContent = 'Change to reedem';
+      var modal = document.getElementById("add-form-scan");
+      modal.style.display = "flex";
+  }
+}
 
         async function scanAction(id){
           if (scanning || id !== null) {
@@ -48,7 +67,12 @@ let scanning = false;
                         qrbox: 250  
                     },
                     qrCodeMessage => {
+
+                      if (reedem == true){
                         checkCode(qrCodeMessage);
+                      } else {
+                        addPoints(qrCodeMessage);
+                      }  
                         scanAction(null);
                     },
                     errorMessage => {
@@ -85,12 +109,30 @@ let scanning = false;
 
         async function checkCode(code) {
             try {
-                const response = await fetch(`/adminpanel/check-code-api/?code=${encodeURIComponent(code)}`, {
-                    method: 'GET',
+                const username = document.querySelector('#username').value; 
+                if (!username) {
+                  Swal.fire({
+                      icon: 'error',
+                      title: 'Validation Error',
+                      text: 'Username is required.',
+                      confirmButtonColor: 'var(--primary-100)',
+                      background: 'var(--bg-100)',
+                      color: 'var(--text-100)'
+                  });
+                  return;
+                }
+                const requestData = {
+                  code: code,
+                  username: username
+              };
+
+                const response = await fetch(`/administration/check-code-api/`, {
+                    method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
                         'X-CSRFToken': getCSRFToken()  
-                    }
+                    },
+                    body: JSON.stringify(requestData)
                 });
           
                 if (!response.ok) {
@@ -112,7 +154,72 @@ let scanning = false;
                   icon: 'success',
                   showConfirmButton: true, 
                   background: 'var(--bg-100)',
+                }).then(() => {
+                  window.location.reload(); 
+              });
+          
+            } catch (error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: error.message,
                 });
+            }
+          }
+
+
+          async function addPoints(code) {
+            try {
+              const amount = document.querySelector('#amount').value; 
+              const business = document.querySelector('#business').value;
+              
+              if (!amount || !business) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Validation Error',
+                    text: 'Both amount and business are required.',
+                    confirmButtonColor: 'var(--primary-100)',
+                    background: 'var(--bg-100)',
+                    color: 'var(--text-100)'
+                });
+                return;
+            }
+              const requestData = {
+                code: code,
+                amount: amount,
+                business: business
+            };
+                const response = await fetch(`/administration/check-code-api/`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': getCSRFToken()  
+                    },
+                    body: JSON.stringify(requestData)
+                });
+          
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    Swal.fire({
+                      icon: 'error',
+                      title: 'Error',
+                      confirmButtonColor: 'var(--primary-100)',
+                      background: 'var(--bg-100)',
+                      color: 'var(--text-100)',
+                      text: errorData.error || 'Something wrong in the process.',
+                    });
+                    return;
+                }
+          
+                Swal.fire({
+                  title: 'Success',
+                  text: 'The points have been sent.',
+                  icon: 'success',
+                  showConfirmButton: true, 
+                  background: 'var(--bg-100)',
+                }).then(() => {
+                  window.location.reload(); 
+              });
           
             } catch (error) {
                 Swal.fire({

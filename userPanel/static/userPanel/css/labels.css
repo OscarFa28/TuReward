@@ -161,7 +161,7 @@ footer{
   }
   .qr-window img{
     background-color: white;
-    height: 15em;
+    min-height: 15em;
     width: 15em;
     margin-top: 2em;
   }

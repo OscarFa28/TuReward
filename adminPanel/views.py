@@ -42,7 +42,8 @@ def scan(request):
     user = request.user
 
     related_business_relations = UserBusinessRelation.objects.filter(user=user).select_related('business')
-
+    related_businesses = Business.objects.filter(user_relations__user=user)
+    
     business_transactions = {}
     for relation in related_business_relations:
         business = relation.business
@@ -51,6 +52,7 @@ def scan(request):
 
     context = {
         'business_transactions': business_transactions,
+        'user_business': related_businesses
     }
 
     return render(request, "adminScan.html", context)
@@ -173,21 +175,20 @@ class RewardsAPIView(APIView):
             return Response({'error': 'Reward not found.'}, status=status.HTTP_404_NOT_FOUND)
         
 class CheckCodeApiView(APIView):
-    permission_classes = [is_admin]
-
-    def get(self, request, *args, **kwargs):
-        code = request.GET.get('code')
+    """
+    API to add points (post function) or spend points (get function)
+    """
+    
+    @method_decorator(user_passes_test(is_admin))
+    def put(self, request, *args, **kwargs):
+        code = request.data.get('code')
+        username = request.data.get('username')
         
-        if not code or "#" not in code:
-            return Response({'error': 'Invalid or missing code.'}, status=status.HTTP_400_BAD_REQUEST)
-
-        parts = code.split("#")
-        if len(parts) != 2:
-            return Response({'error': 'Invalid code format.'}, status=status.HTTP_400_BAD_REQUEST)
+        
 
         try:
-            reward = Reward.objects.get(code=parts[0])
-            customer = CustomUser.objects.get(id=parts[1])
+            reward = Reward.objects.get(code=code)
+            customer = CustomUser.objects.get(username=username)
             customer_points = UserBusinessRelation.objects.get(user=customer, business=reward.business)
         except Reward.DoesNotExist:
             return Response({'error': 'Reward not found.'}, status=status.HTTP_404_NOT_FOUND)
@@ -211,6 +212,34 @@ class CheckCodeApiView(APIView):
                 amount=reward.points_requiered,
                 user=customer,
                 business=reward.business
+            )
+
+        return Response(status=status.HTTP_200_OK)
+    
+    @method_decorator(user_passes_test(is_admin))
+    def post(self, request, *args, **kwargs):
+        print('dede')
+        user_code = request.data.get('code')
+        business_id = request.data.get('business')
+        adding_points = request.data.get('amount')
+
+        try:
+            customer = CustomUser.objects.get(code=user_code)
+            customer_points = UserBusinessRelation.objects.get(user=customer, business=business_id)
+        except CustomUser.DoesNotExist:
+            return Response({'error': 'User not found.'}, status=status.HTTP_404_NOT_FOUND)
+        except UserBusinessRelation.DoesNotExist:
+            return Response({'error': 'User does not have relation with this business.'}, status=status.HTTP_404_NOT_FOUND)
+
+
+        with transaction.atomic():
+            customer_points.points += int(adding_points)
+            customer_points.save()
+            Transaction.objects.create(
+                title='Points added',
+                amount=int(adding_points),
+                user=customer,
+                business= Business.objects.get(id=business_id)
             )
 
         return Response(status=status.HTTP_200_OK)
