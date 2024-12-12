@@ -80,6 +80,50 @@
     function redirectToLogin() {
         window.location.href = "{% url 'login' %}";
     }
+
+    //NAVBAR
+window.addEventListener("scroll", function() {
+    var navBar = document.querySelector(".nav-bar");
+    if (window.scrollY > 0) {
+        navBar.classList.add("nav-bar-scroll");
+    } else {
+        navBar.classList.remove("nav-bar-scroll");
+    }
+});
+
+function navButton() {
+    var options = document.getElementById('options-nav');
+    var navPanel = document.querySelector('.nav-panel');
+    var listButton = document.querySelector('.list-button');
+  
+    if (options.style.display === 'flex') {
+      options.style.display = 'none';
+      navPanel.style.alignItems = 'initial';
+      listButton.style.display = 'block'; 
+    } else {
+      options.style.display = 'flex';
+      navPanel.style.alignItems = 'baseline';
+      listButton.style.display = 'none'; 
+    }
+  }
+  
+  
+  window.addEventListener('scroll', function(event) {
+    if (window.innerWidth < 600) {
+      var options = document.getElementById('options-nav');
+      var navPanel = document.querySelector('.nav-panel');
+      var listButton = document.querySelector('.list-button');
+  
+      // Si el scroll no ocurrió en el nav-panel
+      
+        options.style.display = 'none';
+        navPanel.style.alignItems = 'initial';
+        listButton.style.display = 'block'; // Restaurar el display
+      
+    }
+  });
+
+  
 </script>
 
 </html>
