@@ -22,7 +22,7 @@ TuReward is a digital loyalty system designed to help businesses such as restaur
 ---
 
 ## Installation
-1. Clone the repository: `git clone https://github.com/yourusername/TuReward.git`
+1. Clone the repository: `git clone https://github.com/OscarFa28/TuReward.git`
 2. Install dependencies: `pip install -r requirements.txt`
 3. Set up the database and migrate:  
    ```bash
