@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TuReward</title>
+    <!-- CSS files -->
+    <link rel="stylesheet" type="text/css" href="{% static 'publicPanel/css/colorPalette.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'publicPanel/css/index.css' %}">
+
+    <!-- Fonts -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Expletus+Sans:wght@400;500;600;700&family=Inter:wght@100;200;300;400;500;600;700;800&display=swap');
+    </style>
+    <!-- Icons -->
+    <script src="https://kit.fontawesome.com/c986eafe9b.js" crossorigin="anonymous"></script>
+    
+    <!-- Ícono -->
+    <link rel="icon" type="image/png" href="{% static 'publicPanel/svg/main_logo.svg' %}">
+</head>
+
+<body>
+    <header class="nav-bar">
+        <div class="nav-panel">
+            <a class="main-logo-name" href="#">
+                <img class="main-logo" src="{% static 'publicPanel/svg/main_logo.svg' %}" alt="">
+                <h2 class="main-tittle-nav">TuReward</h2>
+            </a>
+            <div class="right-nav">
+                <div class="list-button" onclick="navButton()">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+                <div id="options-nav" class="sections-nav">
+                    <li onclick="redirectToDAG()">DAG</li>
+                    <li onclick="">Contact</li>
+                    <li onclick="redirectToLogin()">Login</li>
+                </div>
+            </div>
+
+
+        </div>
+    </header>
+    <section class="first-section">
+        <div class="main-part">
+            <div class="div-part-left">
+                <h1 class="main-tittle">Your <span class="h1-fat">Loyalty</span> always <span
+                        class="h1-fat">Rewarded</span>
+                </h1>
+                <p class="main-info"><span class="p-fat">TuReward</span> is a digital loyalty system designed for businesses like restaurants and cafés to enhance customer retention. With QR code technology, customers can earn points for their purchases and redeem them for exclusive rewards. Easy to use, customizable, and efficient, TuReward transforms regular visits into
+                    <span class="p-fat">rewarding experiences.</span>
+                </p>
+                <button class="main-contact-button" onclick="scrollToContact()">Contact Us</button>
+            </div>
+            <div class="div-part-right">
+                <img src="{% static 'publicPanel/svg/main-views.svg' %}" alt="">
+            </div>
+        </div>
+    </section>
+        <footer>
+          <div class="footer-container">
+            <p class="log">
+                <img src="{% static 'residevAPP/svg/ResiDEV_complete_main_logo.svg' %}" alt="" title="AQRI">
+              <span class="by">&nbsp;by</span>
+              <span style="color: #00866b; font-weight: 600; font-size: 1.3em;">DAG</span>
+              <span style="color: var(--text-100); font-weight: 600; font-size: 1.3em;">DEV</span>
+            </p>
+    
+            <p class="website" onclick="redirectToDAG()">Website by <span style="color: var(--text-100); transition:.5s;">DAG</span></p>
+        </div>
+        </footer>
+</body>
+
+<script>
+    function redirectToDAG() {
+        window.location.href = "https://www.dagcorp.dev";
+    }
+    function redirectToLogin() {
+        window.location.href = "{% url 'login' %}";
+    }
+</script>
+
+</html>
